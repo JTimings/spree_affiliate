@@ -5,10 +5,39 @@ en:
   affiliates_signed_up: 'Friends signed up:'
   edit: Edit
   manage_affiliate_settings: Manage affiliate settings
-  no_affiliates_yet: None of your friends have accepted your invitation
   recipient_credit_on_purchase_amount: Recipient credit amount (on first order)
   recipient_credit_on_register_amount: Recipient credit amount (on register)
   registered: registered
   send_affiliate_link: Send affiliate link to friend
   sender_credit_on_purchase_amount: Sender credit amount (on recipient's first order)
   sender_credit_on_register_amount: Sender credit amount (on recipient register)
+  spree:
+    login_or_signup: "Sorry, you need to login or sign up before continuing."
+    invite_friend_title: "share & get free food"
+    invite_friend_subtitle: "invite your friends"
+    invite_friend_pitch: "Share your personal invite link and get %{sender_credit} of credit for every new friend you introduce who orders. They'll also get %{recipient_credit} off their first order."
+    share_on_facebook: "share on facebook"
+    share_on_twitter: "share on twitter"
+    share_on_line: "share on line"
+    share_via_email: "share via email"
+    share: "share"
+    line: "line"
+    tweet: "tweet"
+    email: "email"
+    invite_email_subject: "off Polpa lunch"
+    invite_email_body: "Hey,\n\nI just discovered Polpa and I'm loving it!\n\nPolpa allows you to order delicious healthy lunches and get them delivered to your home or office. It's really convenient, you can order for the whole week and the food is great quality.\n\nIf you sign up using my invite link below, Polpa will give you %{recipient_credit} off your first order:\n\n%{referral_url}\n\nI hope you enjoy your free lunch!"
+    invite_copy_and_paste: "Or copy and paste your personal invite link:"
+    copied_to_clipboard: "Copied to clipboard"
+    invite_referral_status: "Once you've invited your friends, you can view the status of your referrals in your "
+    invite_referral_status_2: "We'll also notify you by email each time we credit your account with %{recipient_credit}!"
+    referral_policy: "View referral policy"
+    referral_policy_text: "Personal invite links should not be shared with yourself or individuals that are part of your household. Personal invite links should only be used for personal and not commercial purposes. Invite links can be shared with personal connections via email, Facebook, Twitter, personal blogs, etc. in which you are the primary content owner. Public distribution on sites where you are a contributor and not the primary owner of the content (e.g. Wikipedia, coupon websites) is not permitted. Promoting your invite code via search engine marketing (e.g. AdWords, Yahoo, Bing) is also not permitted. Use of personal invite links must also conform with Polpa's "
+    referral_policy_text_2: " Polpa reserves the right to suspend your account and/or revoke any or all referral credits at any time if we feel they were earned inappropriately."
+    referrals: "Friend invites"
+    affiliate_email: "email"
+    affiliation_date: "invite date"
+    credit_earned: "credits earned"
+    waiting_order: "Waiting for first order"
+    revoked: "Revoked"
+    no_affiliates_yet: "None of your friends have accepted your invitation"
+    invite_friends_button: "get free food!"

@@ -15,10 +15,12 @@ Spree::User.class_eval do
   end
 
   def ref_id
-    self.id.to_s.reverse
+    Hashids.new("eat better with polpa", 5, "abcdefghijkmnopqrstuvwxyz1234567890").encode(self.id)
   end
 
   def self.find_by_ref_id(ref_id)
-    Spree::User.find(ref_id.to_s.reverse)
+    id = Hashids.new("eat better with polpa", 5, "abcdefghijkmnopqrstuvwxyz1234567890").decode(ref_id).first
+    Spree::User.find(id)
   end
+
 end

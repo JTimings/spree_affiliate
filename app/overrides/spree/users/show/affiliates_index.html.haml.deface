@@ -1,4 +1,4 @@
-/ insert_after "[data-hook='account_my_orders'], #account_my_orders[data-hook]"
+/ insert_after "[data-hook='account_referrals'], #account_referrals[data-hook]"
 
 = render 'spree/affiliates/affiliates'
 

@@ -1,0 +1,16 @@
+<% event = Spree::AffiliateEvent.search(affiliate_id_eq: affiliate.id, name_eq: "purchase").result.first %>
+<% if affiliate.user.present? %>
+	<tr>
+		<td class="affilates_table_row" valign="middle"> <%= affiliate.user.email %> </td>
+		<td class="affilates_table_row" valign="middle"> <%= affiliate.created_at.to_date.strftime("%d-%m-%Y") %> </td>
+		<% if affiliate.user.orders.where(state: 'complete').count > 0 %>
+			<% if event.present? and event.reward.present? %>
+				<td class="affilates_table_row" valign="middle"><span class="affilates_table_row_span"><%= Spree::Money.new( event.reward.amount, {currency:'THB'} ) %></span><i class="fa fa-check affilates_table_row_tick"></i></td>
+			<% else %>
+				<td class="affilates_table_row" valign="middle"> <%= Spree.t(:revoked) %></td>
+			<% end %>
+		<% else %>
+			<td class="affilates_table_row" valign="middle"> <%= Spree.t(:waiting_order) %></td>
+		<% end %>
+	</tr>
+<% end %>

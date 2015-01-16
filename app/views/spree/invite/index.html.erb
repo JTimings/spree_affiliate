@@ -1,0 +1,87 @@
+<div class="alt_body_background">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div id="invite-friends-panel" class="panel panel-default center-block">
+        	<div class="panel-heading">
+            <h3 id="invite-friends-title" class="caps brand_color" style="margin-top: 11px;"><%= Spree.t(:invite_friend_title).upcase %></h3>
+          </div>
+          <div id="invite-friends" class="panel-body">
+          	<h4 class="caps"><%= Spree.t(:invite_friend_subtitle).upcase %></h4>
+          	<p style="padding-bottom:25px;">
+          	<%= Spree.t(:invite_friend_pitch, recipient_credit: Spree::Money.new(SpreeAffiliate::Config[:recipient_credit_on_register_amount],{currency:'THB'}), sender_credit: Spree::Money.new(SpreeAffiliate::Config[:sender_credit_on_purchase_amount],{currency:'THB'}) ) %>
+          	</p>
+
+   					<div class="col-sm-3 col-xs-6 fb_invite_col">
+	   					<a id="facebook_invite" class="button btn btn-primary form-control caps" href="<%= referral_url(spree_current_user) %>" role="button" target="_blank">
+								<i id="facebook_invite_icon" class="fa fa-facebook"></i>
+								<span id="facebook_invite_text">
+									&nbsp;<%= Spree.t(:share).upcase %>	
+								</span>
+							</a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6 line_invite_col">
+            	<a id="line_invite" class="button btn btn-primary form-control caps" data="<%= referral_url(spree_current_user) %>" role="button" target="_blank">
+								<i id="line_invite_icon" class="fa fa-comment"></i>
+								<span id="line_invite_text">
+									&nbsp;<%= Spree.t(:line).upcase %>
+								</span>
+								<% javascript_include_tag "invite-line-button.js" %>
+	              <script type="text/javascript">new jp.naver.line.media.LineButton ({"pc": true, "lang": "en", "type": "c"});</script>
+							</a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6 twitter_invite_col">
+	            <a id="twitter_invite" class="button btn btn-primary form-control caps" title="Sign up to @polpabkk with this link and get 200 THB off a tasty, healthy lunch delivered to your door!" href="<%= referral_url(spree_current_user) %>" suggest="twitter" target="_blank">
+								<i id="twitter_invite_icon" class="fa fa-twitter"></i>
+								<span id="twitter_invite_text">
+									&nbsp;<%= Spree.t(:tweet).upcase %>
+								</span>
+							</a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6 email_invite_col">
+            	<%= mail_to "", :id => "email_invite", :class => "button btn btn-primary form-control caps", :role => "button", :subject=> "#{Spree::Money.new(SpreeAffiliate::Config[:recipient_credit_on_register_amount],{currency:'THB'})} #{Spree.t(:invite_email_subject)}", :body => Spree.t(:invite_email_body, recipient_credit: Spree::Money.new(SpreeAffiliate::Config[:recipient_credit_on_register_amount],{currency:'THB'}), referral_url: referral_url(spree_current_user))  do %>
+							  <i id="email_invite_icon" class="fa fa-envelope"></i>
+								<span id="email_invite_text">
+									&nbsp;<%= Spree.t(:email).upcase %>
+								</span>
+							<% end %>
+            </div>
+
+            <div class="col-xs-12" style="padding-top:25px;">
+           		<div class="row">
+            		<p><%= Spree.t(:invite_copy_and_paste) %></p>
+            		<button id="invite_code" class="form-control serif_font" data-clipboard-text="<%= referral_url(spree_current_user) %>"><%= referral_url(spree_current_user) %></button>
+            		<label id="invite_copied" class="brand_color"><%= Spree.t(:copied_to_clipboard) %></label>
+            		<p id="invite_referral_note"><%= Spree.t(:invite_referral_status) %><%= link_to("Account", account_path, :class => "brand_color") %>. <%= Spree.t(:invite_referral_status_2, recipient_credit: Spree::Money.new(SpreeAffiliate::Config[:recipient_credit_on_register_amount],{currency:'THB'})) %></p>
+            		<h6 id="view_referral_policy"><%= link_to Spree.t(:referral_policy), "", :id => "view_referral_policy_link" %></h6>
+            		<h6 id="referral_policy_text"><%= Spree.t(:referral_policy_text) %><%= link_to("Privacy & Terms", "/privacy-and-terms", :class => "brand_color") %>.<%= Spree.t(:referral_policy_text_2) %></h6>
+            	</div>
+            </div>
+
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var clip = new ZeroClipboard($("#invite_code"))
+
+    clip.on('aftercopy', function ( event ) {
+			$('#invite_copied').slideDown();
+		} );
+
+		$('#view_referral_policy').click(function(e) {
+			$(this).hide();
+			$("#referral_policy_text").slideDown();
+			e.preventDefault();
+		});
+
+  });
+</script>
