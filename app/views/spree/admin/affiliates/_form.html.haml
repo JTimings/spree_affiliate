@@ -1,0 +1,21 @@
+%div
+  .alpha.twelve.columns
+    %fieldset.no-border-bottom      
+      = f.fields_for :partner do |partner_form|
+        .alpha.twelve.columns      
+          .field
+            = partner_form.label :id, t(:id)
+            = partner_form.text_field :id, :class => 'fullwidth'
+        .alpha.twelve.columns          
+          .field
+            = partner_form.label :email, t(:email)
+            = partner_form.text_field :email, :class => 'fullwidth'
+        .alpha.twelve.columns          
+          .field
+            = partner_form.label :password, t(:password)
+            = partner_form.text_field :password, :class => 'fullwidth'                    
+        .alpha.twelve.columns                    
+          .field            
+            = f.label :active, t(:active)
+            = f.check_box :active, :class => 'fullwidth'          
+  .clear

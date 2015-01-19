@@ -1,0 +1,55 @@
+- content_for :page_title do
+  = Spree.t(:affiliates)
+- content_for :page_actions do
+  %li
+    = button_link_to Spree.t(:new_affiliate), spree.new_admin_affiliate_path, :icon => 'icon-plus'
+.clear
+
+%br
+- if @affiliates.any?
+  %table.index
+    %colgroup
+      %col{style: "width: 20%"}
+      %col{style: "width: 10%"}
+      %col{style: "width: 10%"}
+      %col{style: "width: 10%"}
+      %col{style: "width: 10%"}
+      %col{style: "width: 10%"}
+      %col{style: "width: 10%"}      
+      %col{style: "width: 10%"}     
+    %thead
+      %tr
+        %th= Spree.t(:email)
+        %th= Spree.t(:referrals)
+        %th= Spree.t(:registered)
+        %th= Spree.t(:converted)
+        %th= Spree.t(:credits_earned)
+        %th= Spree.t(:current_credits)
+        %th= Spree.t(:active)
+        %th= Spree.t(:affiliate_id_and_url)
+        %th.actions
+    %tbody
+      - @affiliates.each do |affiliate|
+
+        - events = Spree::AffiliateEvent.search(affiliate_partner_id_eq: affiliate.partner.id, name_eq: "purchase").result.sort_by{|array| array[:affiliate_id]}
+        - earned_credit = 0
+        - events.each_with_index do |event,i|
+          - earned_credit += events[i].reward.amount if events[i].reward.present? and events[i].reward.amount.present?
+
+        - partner = affiliate.partner
+        %tr{class: cycle('odd', 'even'), id: spree_dom_id(affiliate)}
+          %td= link_to partner.email, spree.edit_admin_affiliate_path(affiliate)
+          %td.align-center= partner.num_referrals
+          %td.align-center= partner.referred_users.count   
+          %td.align-center= partner.referred_users.select{ |u| u.orders.complete.count > 0 }.count   
+          %td.align-center= Spree::Money.new(earned_credit,{currency:'THB'})        
+          %td.align-center= Spree::Money.new(partner.store_credits_total,{currency:'THB'})
+          %td.align-center= partner.locked_at == nil ? 'Yes' : 'No'
+          %td.align-center= link_to affiliate.ref_id, referral_url(affiliate), { target: '_blank'}
+          %td.actions
+            = link_to_edit affiliate, :no_text => true
+            = link_to_delete affiliate, :no_text => true
+- else
+  .alpha.twelve.columns.no-objects-found
+    = Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/affiliate'))    
+    = link_to Spree.t(:add_one), spree.new_admin_affiliate_path

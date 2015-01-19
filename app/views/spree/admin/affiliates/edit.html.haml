@@ -1,0 +1,42 @@
+- content_for :page_title do
+  = t(:edit_affiliate)
+
+- content_for :page_actions do
+  %li
+    = button_link_to t(:affiliates), spree.admin_affiliates_path, :icon => 'icon-arrow-left'
+= render :partial => 'spree/shared/error_messages', :locals => { :target => @affiliate }
+= form_for [:admin, @affiliate] do |f|
+  %fieldset.no-border-top
+    = render :partial => 'form', :locals => { :f => f }
+    .clear
+    = render :partial => 'spree/admin/shared/edit_resource_links'
+
+%h1.page-title Referred Users
+%br
+%table.index
+  %colgroup
+    %col{style: "width: 40%"}
+    %col{style: "width: 20%"}
+    %col{style: "width: 15%"}
+    %col{style: "width: 25%"}
+  %thead
+    %tr
+      %th Email
+      %th Registration Date
+      %th Total Orders
+      %th Status
+  %tbody
+    - events = Spree::AffiliateEvent.search(affiliate_partner_id_eq: @affiliate.partner.id, name_eq: "purchase").result.sort_by{|array| array[:affiliate_id]}
+    - @affiliate.partner.referred_users.each_with_index do |user,i|
+    - event = events[i]
+      %tr
+        %td= link_to user.email, spree.edit_admin_user_path(user)
+        %td.align-center= user.created_at.to_date.strftime("%d-%m-%Y")
+        %td.align-center= user.orders.complete.count
+        - if user.orders.where(state: 'complete').count > 0
+          - if event.present? and event.reward.present?
+            %td.align-center= Spree::Money.new( event.reward.amount, {currency:'THB'} )
+          - else
+            %td.align-center= Spree.t(:revoked)
+        - else 
+          %td.align-center= Spree.t(:waiting_order)
