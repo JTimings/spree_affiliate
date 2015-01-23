@@ -7,6 +7,57 @@
 
 %br
 - if @affiliates.any?
+  
+  %div.alpha.sixteen.columns
+    %h5.admin_orders_product_title= Spree.t(:summary).upcase
+  %table.index
+    %colgroup
+      %col{style: "width: 10%"}
+      %col{style: "width: 13%"}
+      %col{style: "width: 14%"}
+      %col{style: "width: 13%"}
+      %col{style: "width: 14%"}
+      %col{style: "width: 11%"}
+      %col{style: "width: 11%"}
+      %col{style: "width: 14%"}
+    %thead
+      %tr
+        %th= Spree.t(:affiliates)
+        %th= Spree.t(:invite_page_visits)
+        %th= Spree.t(:registration_rate)
+        %th= Spree.t(:conversion_rate)
+        %th= Spree.t(:conversions_per_day)
+        %th= Spree.t(:referral_gross_profit)
+        %th= Spree.t(:referral_cost)
+        %th= Spree.t(:referral_margin)
+    %tbody
+      %tr
+        - num_affiliates = @affiliates.count.length
+        - invites_sent = @affiliates.inject(0){ |sum,affiliate| sum += affiliate.partner.num_referrals }
+        - registrations = @affiliates.inject(0){ |sum,affiliate| sum += affiliate.partner.referred_users.count }
+        - conversions = @affiliates.inject(0){ |sum,affiliate| sum += affiliate.partner.referred_users.select{ |u| u.orders.complete.count > 0 }.count }
+
+        - total_cost = 0
+        - referral_profit = 0
+        - @affiliates.each do |affiliate|
+          - total_cost += affiliate.partner.affiliate_credit_used("purchase")
+          - affiliate.partner.referred_users.each do |user|
+            - total_cost += user.affiliate_credit_used("register")
+            - user.orders.each do |order|
+              - referral_profit += order.total - order.adjustments.where('label LIKE ?', "%Shipping%").sum(:amount) - order.line_items.sum('(cost_price) * quantity')
+
+        %td.align-center= num_affiliates
+        %td.align-center= invites_sent
+        %td.align-center= number_to_percentage(registrations*100/invites_sent, precision: 0)
+        %td.align-center= number_to_percentage(conversions*100/invites_sent, precision: 0)
+        %td.align-center= number_with_precision(conversions / ((Time.zone.now - @affiliates.last.created_at)/1.day), precision: 2)
+        %td.align-center= Spree::Money.new(referral_profit,{currency:'THB'})
+        %td.align-center= Spree::Money.new(total_cost,{currency:'THB'})
+        %td.align-center= number_to_percentage((1-(total_cost/referral_profit))*100, precision: 0)
+  %br
+
+  %div.alpha.sixteen.columns
+    %h5.admin_orders_product_title= Spree.t(:breakdown).upcase
   %table.index
     %colgroup
       %col{style: "width: 20%"}
@@ -20,30 +71,24 @@
     %thead
       %tr
         %th= Spree.t(:email)
-        %th= Spree.t(:referrals)
+        %th= Spree.t(:invite_visits)
         %th= Spree.t(:registered)
         %th= Spree.t(:converted)
         %th= Spree.t(:credits_earned)
-        %th= Spree.t(:current_credits)
+        %th= Spree.t(:credits_used)
         %th= Spree.t(:active)
         %th= Spree.t(:affiliate_id_and_url)
         %th.actions
     %tbody
       - @affiliates.each do |affiliate|
-
-        - events = Spree::AffiliateEvent.search(affiliate_partner_id_eq: affiliate.partner.id, name_eq: "purchase").result.sort_by{|array| array[:affiliate_id]}
-        - earned_credit = 0
-        - events.each_with_index do |event,i|
-          - earned_credit += events[i].reward.amount if events[i].reward.present? and events[i].reward.amount.present?
-
         - partner = affiliate.partner
         %tr{class: cycle('odd', 'even'), id: spree_dom_id(affiliate)}
           %td= link_to partner.email, spree.edit_admin_affiliate_path(affiliate)
           %td.align-center= partner.num_referrals
           %td.align-center= partner.referred_users.count   
           %td.align-center= partner.referred_users.select{ |u| u.orders.complete.count > 0 }.count   
-          %td.align-center= Spree::Money.new(earned_credit,{currency:'THB'})        
-          %td.align-center= Spree::Money.new(partner.store_credits_total,{currency:'THB'})
+          %td.align-center= Spree::Money.new(partner.affiliate_credit("purchase"),{currency:'THB'})   
+          %td.align-center= Spree::Money.new(partner.affiliate_credit_used("purchase"),{currency:'THB'})
           %td.align-center= partner.locked_at == nil ? 'Yes' : 'No'
           %td.align-center= link_to affiliate.ref_id, referral_url(affiliate), { target: '_blank'}
           %td.actions

@@ -41,3 +41,11 @@ en:
     revoked: "Revoked"
     no_affiliates_yet: "None of your friends have accepted your invitation"
     invite_friends_button: "get free food!"
+    summary: summary
+    breakdown: breakdown
+    invite_visits: invite visits
+    invite_page_visits: invite page visits
+    conversions_per_day: conversions / day
+    cost_per_day: cost / day
+    referral_margin: referral margin
+    referral_profit: referral profit

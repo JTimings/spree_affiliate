@@ -26,6 +26,14 @@ Spree::User.class_eval do
 
   def is_affiliate
     Spree::Affiliate.exists?(partner:self)
-  end 
+  end
+
+  def affiliate_credit(event)
+    store_credits.where('reason LIKE ?', "%Affiliate: #{event}%").sum(:amount)
+  end
+
+  def affiliate_credit_used(event)
+    store_credits.where('reason LIKE ?', "%Affiliate: #{event}%").sum(:amount) - store_credits.where('reason LIKE ?', "%Affiliate: #{event}%").sum(:remaining_amount)
+  end
 
 end
