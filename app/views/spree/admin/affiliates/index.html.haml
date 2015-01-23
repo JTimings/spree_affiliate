@@ -27,9 +27,9 @@
         %th= Spree.t(:registration_rate)
         %th= Spree.t(:conversion_rate)
         %th= Spree.t(:conversions_per_day)
-        %th= Spree.t(:referral_gross_profit)
+        %th= Spree.t(:profit_from_referred)
         %th= Spree.t(:referral_cost)
-        %th= Spree.t(:referral_margin)
+        %th= Spree.t(:referral_kpi)
     %tbody
       %tr
         - num_affiliates = @affiliates.count.length
