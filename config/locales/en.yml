@@ -40,7 +40,7 @@ en:
     waiting_order: "Waiting for first order"
     revoked: "Revoked"
     no_affiliates_yet: "None of your friends have accepted your invitation"
-    invite_friends_button: "get free food!"
+    invite_friends_button: "invite friends"
     summary: summary
     breakdown: breakdown
     invite_visits: invite visits
