@@ -46,7 +46,7 @@
             	<%= mail_to "", :id => "email_invite", :class => "button btn btn-primary form-control caps", :role => "button", :subject=> "#{Spree::Money.new(SpreeAffiliate::Config[:recipient_credit_on_register_amount],{currency:'THB'})} #{Spree.t(:invite_email_subject)}", :body => Spree.t(:invite_email_body, recipient_credit: Spree::Money.new(SpreeAffiliate::Config[:recipient_credit_on_register_amount],{currency:'THB'}), referral_url: referral_url(spree_current_user))  do %>
 							  <i id="email_invite_icon" class="fa fa-envelope"></i>
 								<span id="email_invite_text">
-									&nbsp;<%= Spree.t(:email).upcase %>
+									&nbsp;EMAIL
 								</span>
 							<% end %>
             </div>

@@ -23,7 +23,6 @@ en:
     share: "share"
     line: "line"
     tweet: "tweet"
-    email: "email"
     invite_email_subject: "off Polpa lunch"
     invite_email_body: "Hey,\n\nI just discovered Polpa and I'm loving it!\n\nPolpa allows you to order delicious healthy lunches and get them delivered to your home or office. It's really convenient, you can order for the whole week and the food is great quality.\n\nIf you sign up using my invite link below, Polpa will give you %{recipient_credit} off your first order:\n\n%{referral_url}\n\nI hope you enjoy your free lunch!"
     invite_copy_and_paste: "Or copy and paste your personal invite link:"
