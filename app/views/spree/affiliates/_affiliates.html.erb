@@ -1,31 +1,53 @@
 <div id="affiliates_panel_body" class="panel-body" data-hook="affiliates">
-	<% if @affiliates.present? %>
 
-		<table id="my-affiliates-table" class="table table-striped">
-			<thead id="my-affiliates">
-				<tr>
-      		<th class="affilates_table_row caps" style="font-weight: normal;"><%= Spree.t(:affiliate_email).upcase %></th>   
-      		<th class="affilates_table_row caps" style="font-weight: normal;"><%= Spree.t(:affiliation_date).upcase %></th> 
-      		<th class="affilates_table_row caps" style="font-weight: normal;"><%= Spree.t(:credit_earned).upcase %></th> 
-        </tr>
-			</thead>
-			<tbody>
-				<%= render @affiliates %>
-			</tbody>
-		</table>
+	<div id="invite_friend_p_row" class="row">
+		<div class="col-sm-6">
+
+			<p id="invite_friend_p"><%= Spree.t(:invite_friend_pitch, recipient_credit: Spree::Money.new(SpreeAffiliate::Config[:recipient_credit_on_register_amount],{currency:'THB'}), sender_credit: Spree::Money.new(SpreeAffiliate::Config[:sender_credit_on_purchase_amount],{currency:'THB'}) ) %></p>
+
+			<div class="row">
+				<div class="col-sm-12">
+			  	<%= link_to invite_path, :class => "button btn btn-primary form-control caps", :role => "button" do %>
+						<span><%= Spree.t(:invite_friends_button).upcase %></span>
+					<% end %>
+			  </div>
+			 </div>
+
+		</div>
+
+		<div class="col-sm-6 credit_earned_col">
+			<% if @affiliates.present? %>
+				<p><%= Spree.t(:total_credit_earned) %><span><%= Spree::Money.new(@user.affiliate_credit("purchase"),{currency:'THB'}) %></span><br>
+				<a id="credit_earned_link" data-toggle="collapse" href="#my-affiliates-row" aria-expanded="false" aria-controls="my-affiliates-row" class="brand_color">
+				  <span id="view_credit_earned_link"><%= Spree.t(:view_credit_earned) %>&nbsp;&nbsp;<i class="fa fa-caret-down"></i></span><span id="hide_credit_earned_link" class="hidden"><%= Spree.t(:hide_credit_earned) %>&nbsp;&nbsp;<i class="fa fa-caret-up"></i></span>
+				</a></p>
+
+			<% end %>
+		</div>
+
+	</div>
+
+
+	<% if @affiliates.present? %>
+		<div id="my-affiliates-row" class="row collapse">
+			<div class="col-sm-12">
+				<table id="my-affiliates-table" class="table table-striped">
+					<thead id="my-affiliates">
+						<tr>
+		      		<th class="affilates_table_row caps" style="font-weight: normal;"><%= Spree.t(:affiliate_email).upcase %></th>   
+		      		<th class="affilates_table_row caps" style="font-weight: normal;"><%= Spree.t(:affiliation_date).upcase %></th> 
+		      		<th class="affilates_table_row caps" style="font-weight: normal;"><%= Spree.t(:credit_earned).upcase %></th> 
+		        </tr>
+					</thead>
+					<tbody>
+						<%= render @affiliates %>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
 	<% else %>
     <div class="alert alert-info"><%= Spree.t(:no_affiliates_yet) %></div>
 	<% end %>
-
-	<p id="invite_friend_p"><%= Spree.t(:invite_friend_pitch, recipient_credit: Spree::Money.new(SpreeAffiliate::Config[:recipient_credit_on_register_amount],{currency:'THB'}), sender_credit: Spree::Money.new(SpreeAffiliate::Config[:sender_credit_on_purchase_amount],{currency:'THB'}) ) %></p>
-
-	<div class="row">
-		<div class="col-sm-4 col-xs-12">
-	  	<%= link_to invite_path, :class => "button btn btn-primary form-control caps", :role => "button" do %>
-				<span><%= Spree.t(:invite_friends_button).upcase %></span>
-			<% end %>
-	  </div>
-	 </div>
 
 </div>

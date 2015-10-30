@@ -16,6 +16,9 @@ en:
     invite_friend_title: "share & get free food"
     invite_friend_subtitle: "invite your friends"
     invite_friend_pitch: "Share your personal invite link and get %{sender_credit} of credit for every new friend you introduce who orders. They'll also get %{recipient_credit} off their first order."
+    total_credit_earned: "Total store credit earned: "
+    view_credit_earned: View all credit earned
+    hide_credit_earned: Hide credit earned
     share_on_facebook: "share on facebook"
     share_on_twitter: "share on twitter"
     share_on_line: "share on line"
