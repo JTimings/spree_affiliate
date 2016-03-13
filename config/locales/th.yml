@@ -1,0 +1,53 @@
+th:
+  affiliate_link: 'Invite link:'
+  affiliate_program: Affiliate Program
+  affiliate_settings: Affiliate settings
+  affiliates_signed_up: 'Friends signed up:'
+  edit: Edit
+  manage_affiliate_settings: Manage affiliate settings
+  recipient_credit_on_purchase_amount: Recipient credit amount (on first order)
+  recipient_credit_on_register_amount: Recipient credit amount (on register)
+  registered: registered
+  send_affiliate_link: Send affiliate link to friend
+  sender_credit_on_purchase_amount: Sender credit amount (on recipient's first order)
+  sender_credit_on_register_amount: Sender credit amount (on recipient register)
+  spree:
+    login_or_signup: "ขออภัยค่ะ คุณต้อง login หรือ ลงทะเบียนก่อนถึงจะไปขั้นตอนต่อไปได้"
+    invite_friend_title: "แชร์แล้วกินฟรี"
+    invite_friend_subtitle: "บอกต่อเพื่อนๆ"
+    invite_friend_pitch: "แชร์ link ของคุณแล้วรับไปเลย %{sender_credit}บาทเมื่อเพื่อนของคุณสั่งซื้อออเดอร์แรก ผ่านlinkนั้น" 
+    total_credit_earned: "เครดิตสะสมของคุณ: "
+    view_credit_earned: "ดูยอดเครดิตสะสมทั้งหมด"
+    hide_credit_earned: "ซ่อนเครดิตสะสม"
+    share_on_facebook: "แขร์บนเฟสบุ๊ค"
+    share_on_twitter: "แชร์บนทวิตเตอร์"
+    share_on_line: "แชร์บนไลน์"
+    share_via_email: "แชร์ทางอีเมล์"
+    share: "แชร์"
+    line: "line"
+    tweet: "tweet"
+    invite_email_subject: "ฟรี สำหรับสั่งอาหาร Polpa"
+    invite_email_body: "สวัสดีจ้า เราพึ่งได้ลองชิม polpa แล้วถูกใจม๊าก  อาหารอร่อยคุณภาพพรีเมี่ยมแล้วยังดีต่อสุขภาพอีก เมนุใหม่ทุกอาทิตย์ ส่งตรงถึงบ้านหรือออฟิส ทั้งคลีนทั้งสะดวก จะสั่งทีเดียวสำหรับทั้งอาทิตย์เลยก็ยังได้ สำหรับออเดอร์แรกรับไปเลย %{recipient_credit} บาทฟรี ถ้าสั่งผ่าน link ด้านล่าง ลองดูไม่ผิดหวังแน่นอน!\n\n%{referral_url}"
+    invite_copy_and_paste: "หรือก็อปแล้วแปะ link ไว้ที่ๆต้องการ:"
+    copied_to_clipboard: "กดเพื่อน copy"
+    invite_referral_status: "เมื่อบอกเพื่อนๆต่อแล้ว คุณสามารถเข้าไปเช็คสถานะดูได้ว่าใครสั่งแล้วบ้าง "
+    invite_referral_status_2: "เราจะแจ้งคุณทางอีเมล์ทุกๆครั้งที่คุณได้รับเครดิตเพิ่ม %{recipient_credit}!"
+    referral_policy: "ข้อกำหนดแล้วเงื่อนไขสำหรับโปรโมชั่นนี้"
+    referral_policy_text: "Personal invite links should not be shared with yourself or individuals that are part of your household. Personal invite links should only be used for personal and not commercial purposes. Invite links can be shared with personal connections via email, Facebook, Twitter, personal blogs, etc. in which you are the primary content owner. Public distribution on sites where you are a contributor and not the primary owner of the content (e.g. Wikipedia, coupon websites) is not permitted. Promoting your invite code via search engine marketing (e.g. AdWords, Yahoo, Bing) is also not permitted. Use of personal invite links must also conform with Polpa's "
+    referral_policy_text_2: " Polpa reserves the right to suspend your account and/or revoke any or all referral credits at any time if we feel they were earned inappropriately."
+    referrals: "เชิญชวนเพื่อน"
+    affiliate_email: "อีเมล์"
+    affiliation_date: "วันที่เชิญชวน"
+    credit_earned: "เครดิตสะสม"
+    waiting_order: "เราออเดอร์แรกจากคุณอยู่"
+    revoked: "ถอดถอน"
+    no_affiliates_yet: "ยังไม่เพื่อนตอบรับคำเชิญชวนของคุณ"
+    invite_friends_button: "บอกต่อเพื่อนๆ"
+    summary: สรุป
+    breakdown: รายละเอียด
+    invite_visits: invite visits
+    invite_page_visits: invite page visits
+    conversions_per_day: conversions / day
+    cost_per_day: cost / day
+    referral_margin: referral margin
+    referral_profit: referral profit
