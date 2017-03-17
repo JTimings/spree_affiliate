@@ -25,6 +25,7 @@ en:
     share_via_email: "share via email"
     share: "share"
     line: "line"
+    line_invite_text: "Sign up to Polpa with this link and get ฿200 off an inspiring, healthy meal delivered to your door! "
     tweet: "tweet"
     invite_email_subject: "off a Polpa meal"
     invite_email_body: "Hey,\n\nI just discovered Polpa and I'm loving it!\n\nPolpa allows you to order delicious healthy meals from their weekly menu and get them delivered to your home or office. It's really convenient, you can order for the whole week and the food is great quality.\n\nIf you sign up using my invite link below, Polpa will give you %{recipient_credit} off your first order:\n\n%{referral_url}\n\nI hope you enjoy your first meal!"

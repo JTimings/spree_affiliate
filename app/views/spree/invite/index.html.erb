@@ -23,7 +23,7 @@
             </div>
 
             <div class="col-sm-3 col-xs-6 line_invite_col">
-            	<a id="line_invite" class="button btn btn-primary form-control caps" data="<%= referral_url(spree_current_user) %>" role="button" target="_blank">
+            	<a id="line_invite" class="button btn btn-primary form-control caps line-link" data-url="<%= referral_url(spree_current_user) %>" data-text="<%= Spree.t(:line_invite_text) %>" role="button" target="_blank">
 								<i id="line_invite_icon" class="fa fa-comment"></i>
 								<span id="line_invite_text">
 									&nbsp;<%= Spree.t(:line).upcase %>
